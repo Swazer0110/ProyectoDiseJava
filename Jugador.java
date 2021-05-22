@@ -5,7 +5,7 @@ import java.util.*;
 public class Jugador {
     private String arma;
     private int fuerza,resistencia,magia;
-    Jugador(){
+    public Jugador(){
         setArma(eleccion());
         switch(this.arma){
         case "Hacha":
