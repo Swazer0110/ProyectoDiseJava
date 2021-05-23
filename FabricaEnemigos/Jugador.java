@@ -9,19 +9,19 @@ public class Jugador extends Enemigo{
         setArma(eleccion());
         switch(this.arma){
         case "Hacha":
-            setFuerza(0);
-            setResistencia(50);
-            setMagia(30);
+            setFuerza(13);
+            setResistencia(30);
+            setMagia(5);
             break;
         case "Espada":
-            setFuerza(40);
-            setResistencia(70);
-            setMagia(40);
+            setFuerza(10);
+            setResistencia(45);
+            setMagia(5);
             break;
         case "Baston":
-            setFuerza(30);
-            setResistencia(40);
-            setMagia(80);
+            setFuerza(8);
+            setResistencia(30);
+            setMagia(15);
             break;
         }
     }
