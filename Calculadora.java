@@ -10,6 +10,6 @@ public final class Calculadora {
         return instance;
     }
     public int dañoFisico(Enemigo personaje) {
-        return personaje.getFuerza()*(personaje.getNivel()/2);
+        return personaje.getFuerza();
     }
 }
