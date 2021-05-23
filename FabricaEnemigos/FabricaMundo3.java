@@ -1,3 +1,5 @@
+package FabricaEnemigos;
+
 public class FabricaMundo3  implements FabricaEnemigos{
     public Guerrero crearGuerrero(){
         return new GuerreroMundo3();

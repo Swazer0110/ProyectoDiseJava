@@ -1,3 +1,5 @@
+package FabricaEnemigos;
+
 public class MagoMundo1 extends Mago{
     public MagoMundo1(){
         resistencia = 10;

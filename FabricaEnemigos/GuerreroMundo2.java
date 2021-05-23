@@ -1,3 +1,5 @@
+package FabricaEnemigos;
+
 public class GuerreroMundo2 extends Guerrero {
     public GuerreroMundo2() {
         resistencia = 15;

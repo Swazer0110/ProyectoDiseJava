@@ -1,3 +1,5 @@
+package FabricaEnemigos;
+
 public class LadronMundo1 extends Ladron{
     public LadronMundo1(){
         resistencia = 5;

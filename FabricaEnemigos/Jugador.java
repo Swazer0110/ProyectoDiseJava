@@ -1,10 +1,10 @@
+package FabricaEnemigos;
 /**
 * Jugador
 */
 import java.util.*; 
-public class Jugador {
+public class Jugador extends Enemigo{
     private String arma;
-    private int fuerza,resistencia,magia;
     public Jugador(){
         setArma(eleccion());
         switch(this.arma){
