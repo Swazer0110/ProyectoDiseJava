@@ -5,5 +5,7 @@ public class MagoMundo1 extends Mago{
         resistencia = 10;
         fuerza = 5;
         magia = 15;
+        vida=resistencia;
+        elegirEstrategia();
     }
 }

@@ -5,5 +5,7 @@ public class GuerreroMundo1 extends Guerrero{
         resistencia = 13;
         fuerza = 8;
         magia = 5;
+        vida=resistencia;
+        elegirEstrategia();
     }
 }

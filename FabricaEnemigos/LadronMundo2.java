@@ -5,5 +5,7 @@ public class LadronMundo2 extends Ladron{
         resistencia = 10;
         fuerza = 15;
         magia = 5;
+        vida=resistencia;
+        elegirEstrategia();
     }
 }

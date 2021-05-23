@@ -9,7 +9,7 @@ public class Jugador extends Enemigo{
         setArma(eleccion());
         switch(this.arma){
         case "Hacha":
-            setFuerza(70);
+            setFuerza(0);
             setResistencia(50);
             setMagia(30);
             break;

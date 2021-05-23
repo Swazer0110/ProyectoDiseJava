@@ -1,3 +1,4 @@
+package Main;
 import FabricaEnemigos.Enemigo;
 
 public final class Calculadora {
@@ -11,5 +12,8 @@ public final class Calculadora {
     }
     public int dañoFisico(Enemigo personaje) {
         return personaje.getFuerza();
+    }
+    public int dañoMagico(Enemigo personaje){
+        return (personaje.getFuerza()/2)+personaje.getFuerza();
     }
 }
