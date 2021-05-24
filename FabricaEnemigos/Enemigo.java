@@ -3,9 +3,11 @@ import EstrategiaEnemigos.AgresivoEstrategia;
 import EstrategiaEnemigos.DefensivoEstrategia;
 import EstrategiaEnemigos.Estrategia;
 import java.util.Random;
+import Estado.*;
 
 public abstract class Enemigo {
     int vida,fuerza, resistencia, magia,nivel=1;
+    Estado estado=new Estado();
     Estrategia estrategia;
     boolean muerte=false,defensa=false;
     public void getDescripcion(){}
@@ -26,6 +28,12 @@ public abstract class Enemigo {
     }
     public void cambiarDefensa(){
         defensa=!defensa;
+    }
+    public void quitarDefensa(){
+        defensa=false;
+    }
+    public void cambiarMuerte(){
+        this.muerte=!this.muerte;
     }
     public int getFuerza() {
         return fuerza;
@@ -50,5 +58,8 @@ public abstract class Enemigo {
     }
     public boolean getDefensa(){
         return defensa;
+    }
+    public Estado getEstado() {
+        return estado;
     }
 }

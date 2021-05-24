@@ -1,8 +1,7 @@
 package FabricaEnemigos;
-/**
-* Jugador
-*/
 import java.util.*; 
+import Main.*;
+
 public class Jugador extends Enemigo{
     private String arma;
     public Jugador(){
@@ -65,7 +64,30 @@ public class Jugador extends Enemigo{
                 arma="Espada";
                 break;
         }
-        sc.close();
         return arma;
+    }
+    public void imprimirStats(){
+        System.out.println("Fuerza:"+getFuerza()+" Vida:"+getResistencia()+" Magia:"+getMagia());
+    }
+    public int decidirAccion(){
+        Scanner sc= new Scanner(System.in);
+        imprimirStats();
+        System.out.println("Eleccion: 1-Ataque Normal 2-Ataque Magico 3-Defender 4-Rendirse");
+        int i= sc.nextInt();
+        Calculadora calculadora=Calculadora.instance();
+        switch (i) {
+            case 1:
+                return calculadora.dañoFisico(this);
+            case 2:
+                this.perderMagia();
+                return calculadora.dañoMagico(this);
+            case 3:
+                this.cambiarDefensa();
+                return 0;
+            case 4:
+                this.cambiarMuerte();
+            default:
+                return 0;
+        }
     }
 }
