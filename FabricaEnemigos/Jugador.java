@@ -8,18 +8,18 @@ public class Jugador extends Enemigo{
         setArma(eleccion());
         switch(this.arma){
         case "Hacha":
-            setFuerza(13);
-            setResistencia(30);
+            setFuerza(11);
+            setResistencia(40);
             setMagia(5);
             break;
         case "Espada":
-            setFuerza(10);
+            setFuerza(9);
             setResistencia(45);
             setMagia(5);
             break;
         case "Baston":
             setFuerza(8);
-            setResistencia(30);
+            setResistencia(35);
             setMagia(15);
             break;
         }
@@ -72,20 +72,22 @@ public class Jugador extends Enemigo{
     public int decidirAccion(){
         Scanner sc= new Scanner(System.in);
         imprimirStats();
-        System.out.println("Eleccion: 1-Ataque Normal 2-Ataque Magico 3-Defender 4-Rendirse");
+        System.out.println("Eleccion: 1-Ataque Normal 2-Ataque Magico 3-Defender ");
         int i= sc.nextInt();
         Calculadora calculadora=Calculadora.instance();
         switch (i) {
             case 1:
                 return calculadora.dañoFisico(this);
             case 2:
+                if(this.getMagia()==0){
+                    System.out.println("No te queda mana!");
+                    return calculadora.dañoFisico(this);
+                }    
                 this.perderMagia();
                 return calculadora.dañoMagico(this);
             case 3:
                 this.cambiarDefensa();
                 return 0;
-            case 4:
-                this.cambiarMuerte();
             default:
                 return 0;
         }

@@ -6,9 +6,8 @@ import Estado.EstadoNormal;
 
 public class Combate {
 
-    public void combatir(Jugador jugador,int num_enemigo){
-        GestorEnemigos gestor=new GestorEnemigos(0,num_enemigo);
-        Calculadora calculadora=Calculadora.instance();
+    public int combatir(Jugador jugador,int mundo,int num_enemigo){
+        GestorEnemigos gestor=new GestorEnemigos(mundo,num_enemigo);
         Random rd = new Random();
         gestor.getEnemigo().getDescripcion();
         boolean b=rd.nextBoolean();
@@ -20,14 +19,12 @@ public class Combate {
             if(!jugador.getEstado().getDescrString().equals("Normal")){
                 System.out.println("Tu personaje esta "+jugador.getEstado().getDescrString()+"!");
                 decisionj=-1;
-                jugador.getEstado().nextEstado();
             }
             else{
                 decisionj=jugador.decidirAccion();
                 if(decisionj==0)
                     jugador.cambiarDefensa();
             }                                                                             //
-
 
 
 
@@ -50,9 +47,10 @@ public class Combate {
 
 
 
-           // if(b==true){
+           if(b==true){
                 if(decisionj<0){
                     System.out.println("Como estas "+jugador.getEstado().getDescrString()+" no tomas accion!");
+                    jugador.getEstado().nextEstado();
                 }
                 else if(decisionj==0){
                     System.out.println("Te has defendido!");
@@ -67,14 +65,11 @@ public class Combate {
                         gestor.getEnemigo().perderVida(decisionj);
                         if(gestor.getEnemigo().getMuerte()==true){
                             System.out.println("Has ganado!");
-                            return;
+                            return 1;
                         }
                     }
                 }
                 
-
-
-
 
 
                 if(decisione<0){
@@ -94,17 +89,18 @@ public class Combate {
                         jugador.perderVida(decisionj);
                         if(jugador.getResistencia()<0){
                             System.out.println("Has perdido!");
-                            return;
+                            return 0;
                         }
                     }
                 }
                 gestor.getEnemigo().quitarDefensa();
                 jugador.quitarDefensa();
-            //}
+            }
 
-           /* else{
+            else{
                 if(decisione<0){
                     System.out.println("Como el enemigo esta "+gestor.getEnemigo().getEstado().getDescrString()+" no toma accion!");
+                    gestor.getEnemigo().getEstado().nextEstado();
                 }
                 else if(decisione==0){
                     System.out.println("El enemigo se ha defendido!");
@@ -119,21 +115,22 @@ public class Combate {
                         jugador.perderVida(decisionj);
                         if(jugador.getResistencia()<0){
                             System.out.println("Has perdido!");
-                            return;
+                            return 0;
                         }
                     }
                 }
-                gestor.getEnemigo().quitarDefensa();
+
 
                 if(decisionj<0){
                     System.out.println("Como estas "+jugador.getEstado().getDescrString()+" no tomas accion!");
+                    jugador.getEstado().nextEstado();
                 }
                 else if(decisionj==0){
                     System.out.println("Te has defendido!");
                 }
                 else{
                     if(decisione==0){
-                        System.out.println("El enemigo se ha defendido!");
+                        System.out.println("El enemigo ha bloqueado tu ataque!");
                         jugador.getEstado().nextEstado();
                     }
                     else{
@@ -141,20 +138,17 @@ public class Combate {
                         gestor.getEnemigo().perderVida(decisionj);
                         if(gestor.getEnemigo().getMuerte()==true){
                             System.out.println("Has ganado!");
-                            return;
+                            return 1;
                         }
                     }
                 }
+
+                gestor.getEnemigo().quitarDefensa();
                 jugador.quitarDefensa();
             }
             b=!b;
-            */
         }
+        return 1;
     }
     
-    public static void main(String[] args) {
-        Jugador jugador = new Jugador();
-        Combate combate=new Combate();
-        combate.combatir(jugador,0);
-    }
 }

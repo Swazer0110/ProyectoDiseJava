@@ -6,7 +6,7 @@ import java.util.Random;
 import Estado.*;
 
 public abstract class Enemigo {
-    int vida,fuerza, resistencia, magia,nivel=1;
+    int vida,fuerza, resistencia, magia,nivel=1,mundo;
     Estado estado=new Estado();
     Estrategia estrategia;
     boolean muerte=false,defensa=false;
@@ -61,5 +61,8 @@ public abstract class Enemigo {
     }
     public Estado getEstado() {
         return estado;
+    }
+    public int getMundo() {
+        return mundo;
     }
 }
