@@ -1,7 +1,12 @@
+package FabricaEnemigos;
+
 public class MagoMundo3 extends Mago {
     public MagoMundo3(){
         resistencia = 4;
         fuerza = 4;
-        magia = 12;
+        magia = 15;
+        vida=resistencia;
+        mundo=3;
+        elegirEstrategia();
     }
 }

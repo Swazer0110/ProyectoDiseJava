@@ -1,27 +1,26 @@
-/**
-* Jugador
-*/
+package FabricaEnemigos;
 import java.util.*; 
-public class Jugador {
+import Main.*;
+
+public class Jugador extends Enemigo{
     private String arma;
-    private int fuerza,resistencia,magia;
     public Jugador(){
         setArma(eleccion());
         switch(this.arma){
         case "Hacha":
-            setFuerza(70);
-            setResistencia(50);
-            setMagia(30);
+            setFuerza(11);
+            setResistencia(40);
+            setMagia(5);
             break;
         case "Espada":
-            setFuerza(40);
-            setResistencia(70);
-            setMagia(40);
+            setFuerza(9);
+            setResistencia(45);
+            setMagia(5);
             break;
         case "Baston":
-            setFuerza(30);
-            setResistencia(40);
-            setMagia(80);
+            setFuerza(8);
+            setResistencia(35);
+            setMagia(15);
             break;
         }
     }
@@ -65,7 +64,32 @@ public class Jugador {
                 arma="Espada";
                 break;
         }
-        sc.close();
         return arma;
+    }
+    public void imprimirStats(){
+        System.out.println("Fuerza:"+getFuerza()+" Vida:"+getResistencia()+" Magia:"+getMagia());
+    }
+    public int decidirAccion(){
+        Scanner sc= new Scanner(System.in);
+        imprimirStats();
+        System.out.println("Eleccion: 1-Ataque Normal 2-Ataque Magico 3-Defender ");
+        int i= sc.nextInt();
+        Calculadora calculadora=Calculadora.instance();
+        switch (i) {
+            case 1:
+                return calculadora.dañoFisico(this);
+            case 2:
+                if(this.getMagia()==0){
+                    System.out.println("No te queda mana!");
+                    return calculadora.dañoFisico(this);
+                }    
+                this.perderMagia();
+                return calculadora.dañoMagico(this);
+            case 3:
+                this.cambiarDefensa();
+                return 0;
+            default:
+                return 0;
+        }
     }
 }
