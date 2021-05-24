@@ -1,8 +1,8 @@
 package Estado;
 
-public class EstadoConfuso implements EstadosPersonaje{
+public class EstadoConfuso implements EstadosPersonaje{     //Clase para definir el estado de confuso del personaje
     public void next(Estado estado){
-        estado.setEstadoSemaforo(new EstadoNormal());
+        estado.setEstado(new EstadoNormal());
     }
     public void printEstado(Estado estado){
         estado.setDescrString("Confuso");

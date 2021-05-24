@@ -2,8 +2,6 @@ package Main;
 import FabricaEnemigos.*;
 import java.util.Random;
 
-import Estado.EstadoNormal;
-
 public class Combate {
 
     public int combatir(Jugador jugador,int mundo,int num_enemigo){
@@ -13,10 +11,11 @@ public class Combate {
         boolean b=rd.nextBoolean();
         int decisionj=0,decisione=0;
         while(jugador.getMuerte()==false&&gestor.getEnemigo().getMuerte()==false){
-
-
-            System.out.println("Turno Jugador");                                         //accion jugador
-            if(!jugador.getEstado().getDescrString().equals("Normal")){
+            //Accion jugador
+            //Primero se comprueba el estado del jugador y despues se llama al metodo decidirAccion del propio jugador
+            //Si bloquea , la variable defensa del jugador cambiara a true
+            System.out.println("Turno Jugador");                                         
+            if(!jugador.getEstado().getDescrString().equals("Normal")){                
                 System.out.println("Tu personaje esta "+jugador.getEstado().getDescrString()+"!");
                 decisionj=-1;
             }
@@ -24,13 +23,15 @@ public class Combate {
                 decisionj=jugador.decidirAccion();
                 if(decisionj==0)
                     jugador.cambiarDefensa();
-            }                                                                             //
+            }//
 
 
-
-
-            System.out.println("Turno Enemigo");                                          //accion enemigo
-            if(!gestor.getEnemigo().getEstado().getDescrString().equals("Normal")){
+            //Accion enemigo
+            //Primerp se comprueba el estado del enemigo y depues se llama a su estrategia para la decision
+            //Si bloquea , la variable defensa del enemigo cambiara a true
+            
+            System.out.println("Turno Enemigo");                                          
+            if(!gestor.getEnemigo().getEstado().getDescrString().equals("Normal")){        
                 System.out.println("El enemigo esta "+gestor.getEnemigo().getEstado().getDescrString()+"!");
                 decisione=-1;
             }
@@ -39,14 +40,16 @@ public class Combate {
                 if(decisione==0){
                     gestor.getEnemigo().cambiarDefensa();
                 }
-            }                                                                             //
+            }//
 
 
             System.out.println(decisione);
             System.out.println(decisionj);
 
 
-
+            //Calculo de daños
+            //Primero se comprueba el orden de prioridad. Si b==true se calculan primero los daños del jugador y despues del enemigo, 
+            //si b==false se calculan primero los del enemigo
            if(b==true){
                 if(decisionj<0){
                     System.out.println("Como estas "+jugador.getEstado().getDescrString()+" no tomas accion!");
@@ -57,7 +60,7 @@ public class Combate {
                 }
                 else{
                     if(decisione==0){
-                        System.out.println("El enemigo ha bloqueado tu ataque!");
+                        System.out.println("El enemigo ha bloqueado tu ataque!"); //Si el enemigo ha bloqueado ,el jugador pasara a estado confuso, y el siguiente turno se quedara paralizado
                         jugador.getEstado().nextEstado();
                     }
                     else{
@@ -81,7 +84,7 @@ public class Combate {
                 }
                 else{
                     if(decisionj==0){
-                        System.out.println("Bloqueas el ataque del enemigo!");
+                        System.out.println("Bloqueas el ataque del enemigo!");//Si el jugador ha bloqueado ,el enemigo pasara a estado confuso, y el siguiente turno se quedara paralizado
                         gestor.getEnemigo().getEstado().nextEstado();
                     }
                     else{
@@ -96,7 +99,8 @@ public class Combate {
                 gestor.getEnemigo().quitarDefensa();
                 jugador.quitarDefensa();
             }
-
+            //Lo mismo pero con el orden de prioridad cambiado
+            //El enemigo calculara los daños primero
             else{
                 if(decisione<0){
                     System.out.println("Como el enemigo esta "+gestor.getEnemigo().getEstado().getDescrString()+" no toma accion!");
@@ -143,8 +147,8 @@ public class Combate {
                     }
                 }
 
-                gestor.getEnemigo().quitarDefensa();
-                jugador.quitarDefensa();
+                gestor.getEnemigo().quitarDefensa();//Una vez termine cada turno se quitara la variable de defensa de cada personaje,
+                jugador.quitarDefensa();            //dando a entender que esta dejando de bloquear
             }
             b=!b;
         }

@@ -2,7 +2,7 @@ package FabricaEnemigos;
 import java.util.*; 
 import Main.*;
 
-public class Jugador extends Enemigo{
+public class Jugador extends Enemigo{           //Clase para controlar al jugador
     private String arma;
     public Jugador(){
         setArma(eleccion());
@@ -10,7 +10,7 @@ public class Jugador extends Enemigo{
         case "Hacha":
             setFuerza(11);
             setResistencia(40);
-            setMagia(5);
+            setMagia(5);    
             break;
         case "Espada":
             setFuerza(9);
@@ -23,6 +23,7 @@ public class Jugador extends Enemigo{
             setMagia(15);
             break;
         }
+        this.vida=resistencia;
     }
     public String getArma() {
         return arma;
@@ -45,8 +46,8 @@ public class Jugador extends Enemigo{
     public void setArma(String arma) {
         this.arma = arma;
     }
-    public String eleccion(){
-        Scanner sc= new Scanner(System.in);
+    public String eleccion(){                       //Metodo para elegir el arma al principio del juego
+        Scanner sc= new Scanner(System.in); 
         String arma=new String();
         System.out.println("Elige tu arma:\n1-Hacha\n2-Espada\n3-Baston");
         int i= sc.nextInt();
@@ -69,7 +70,7 @@ public class Jugador extends Enemigo{
     public void imprimirStats(){
         System.out.println("Fuerza:"+getFuerza()+" Vida:"+getResistencia()+" Magia:"+getMagia());
     }
-    public int decidirAccion(){
+    public int decidirAccion(){                      //Metodo para elegir accion en cada turno
         Scanner sc= new Scanner(System.in);
         imprimirStats();
         System.out.println("Eleccion: 1-Ataque Normal 2-Ataque Magico 3-Defender ");
@@ -91,5 +92,15 @@ public class Jugador extends Enemigo{
             default:
                 return 0;
         }
+    }
+    public void curar(){                            //Metodo para curar al juagador cada tres rondas
+        this.setResistencia(this.getVida());
+        if(this.getArma().equals("Baston")){
+            this.setMagia(this.getMagia()+10);
+        }
+        else{
+            this.setMagia(this.getMagia()+5);
+        }
+        this.setMagia(this.getMagia());
     }
 }

@@ -1,8 +1,8 @@
 package AlgoritmoEleccion;
 import FabricaEnemigos.Enemigo;
 
-public abstract class TemplateEleccion {
-    Enemigo enemigo;
+public abstract class TemplateEleccion {   //Clase abstracta para el cuerpo del algoritmo a seguir por los enemigos en la toma de acciones
+    Enemigo enemigo;                       //(Template)
     public final int eleccion(){
         if(paso1()==true){
             return paso2();

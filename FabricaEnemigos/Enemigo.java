@@ -5,28 +5,28 @@ import EstrategiaEnemigos.Estrategia;
 import java.util.Random;
 import Estado.*;
 
-public abstract class Enemigo {
-    int vida,fuerza, resistencia, magia,nivel=1,mundo;
+public abstract class Enemigo {                         //Clase que define a los enemigos y al jugador
+    int vida,fuerza, resistencia, magia,nivel=1,mundo;  //Stats
     Estado estado=new Estado();
     Estrategia estrategia;
     boolean muerte=false,defensa=false;
     public void getDescripcion(){}
-    public void perderVida(int daño){
+    public void perderVida(int daño){                    //Metodo para recibir daños en cada turno
         this.resistencia=this.resistencia-daño;
         if(this.resistencia<1)
             muerte=true;
     }
-    public void perderMagia(){
+    public void perderMagia(){                              
         this.magia=this.magia-5;
     }
-    public void elegirEstrategia(){
+    public void elegirEstrategia(){                     //Metodo para elegir estartegia en los enemigos
         Random random=new Random();
         if(random.nextBoolean()==false)
             this.estrategia=new AgresivoEstrategia(this);
         else    
             this.estrategia=new DefensivoEstrategia(this);
     }
-    public void cambiarDefensa(){
+    public void cambiarDefensa(){                   
         defensa=!defensa;
     }
     public void quitarDefensa(){

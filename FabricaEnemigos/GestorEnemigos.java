@@ -1,6 +1,6 @@
 package FabricaEnemigos;
 
-public class GestorEnemigos {
+public class GestorEnemigos {                       //Clase para controlar la creacion de enemigos
     private FabricaEnemigos fabrica;
     private Enemigo enemigo;
     public GestorEnemigos(int mundo,int enemigo){
@@ -34,20 +34,9 @@ public class GestorEnemigos {
         }
     }
 
-    public void recibeAtaque(int daño){
-        this.enemigo.perderVida(daño);
-    }
+
     public Enemigo getEnemigo() {
         return enemigo;
-    }
-    public FabricaEnemigos getFabrica() {
-        return fabrica;
-    }
-    public void setEnemigo(Enemigo enemigo) {
-        this.enemigo = enemigo;
-    }
-    public void setFabrica(FabricaEnemigos fabrica) {
-        this.fabrica = fabrica;
     }
     
 }

@@ -1,7 +1,7 @@
 package Estado;
 
-public class Estado {
-    EstadosPersonaje estado=new EstadoNormal();
+public class Estado {                               //Clase para controlar los tipos de estado de los personajes durante el combate (State)
+    EstadosPersonaje estado=new EstadoNormal();    
     String descrString=new String("Normal");
     public void nextEstado(){
         estado.next(this);
@@ -12,17 +12,17 @@ public class Estado {
         estado.printEstado(this);
     }
 
-    public void setEstadoSemaforo(EstadosPersonaje estado) {
+    public void setEstado(EstadosPersonaje estado) {
         this.estado = estado;
     }
 
-    public EstadosPersonaje getEstadoSemaforo() {
+    public EstadosPersonaje getEstado() {
         return estado;
     }
     public void setDescrString(String descrString) {
         this.descrString = descrString;
     }
-    public String getDescrString() {
+    public String getDescrString() {                            //Metodo para recibir la string con el estado del perosnaje
         return descrString;
     }
 }
